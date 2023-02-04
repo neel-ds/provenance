@@ -1,30 +1,30 @@
-import { NextPage } from 'next';
-import { useState } from 'react';
-import React from 'react';
-import Head from 'next/head';
-import Image from 'next/image';
-import Input from '../components/form-elements/input';
-import Button from '../components/form-elements/button';
-import FileUpload from '../components/form-elements/file-upload';
-import Header from '../components/form-components/Header';
+import { NextPage } from "next";
+import { useState } from "react";
+import React from "react";
+import Head from "next/head";
+import Image from "next/image";
+import Input from "../components/form-elements/input";
+import Button from "../components/form-elements/button";
+import FileUpload from "../components/form-elements/file-upload";
+import Header from "../components/form-components/Header";
 
 const Addproduct: NextPage = () => {
-  const [data, setData] = useState({})
-  const [imageUrl, setImageUrl] = useState('')
+  const [data, setData] = useState({});
+  const [imageUrl, setImageUrl] = useState("");
 
   const handleData = (e: any) => {
-    setData({ ...data, [e.target.name]: e.target.value })
-  }
+    setData({ ...data, [e.target.name]: e.target.value });
+  };
 
   const handleImage = (e: any) => {
     const image = URL.createObjectURL(e.target.files[0]);
-    setImageUrl(image)
-    setData({ ...data, [e.target.name]: e.target.value })
-  }
+    setImageUrl(image);
+    setData({ ...data, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = () => {
     // Submission logics
-  }
+  };
 
   return (
     <>
@@ -83,19 +83,17 @@ const Addproduct: NextPage = () => {
                               label="Product Image"
                               onChange={handleImage}
                             />
-                            <Image 
-                              src={imageUrl !== '' ? imageUrl : '/preview.png'} 
-                              alt="preview" 
-                              width={200} 
-                              height={200} />
+                            <Image
+                              src={imageUrl !== "" ? imageUrl : "/preview.png"}
+                              alt="preview"
+                              width={200}
+                              height={200}
+                            />
                           </div>
                         </div>
                       </div>
                       <div className="max-w-[200px] flex m-auto">
-                        <Button
-                          label="Add Product"
-                          onClick={handleSubmit}
-                        />
+                        <Button label="Add Product" onClick={handleSubmit} />
                       </div>
                     </form>
                   </div>
@@ -106,7 +104,7 @@ const Addproduct: NextPage = () => {
         </div>
       </main>
     </>
-  )
-}
+  );
+};
 
-export default Addproduct
+export default Addproduct;

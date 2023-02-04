@@ -1,22 +1,22 @@
-import { NextPage } from 'next';
-import React from 'react';
-import { useState } from 'react';
-import Head from 'next/head';
-import Input from '../components/form-elements/input';
-import Button from '../components/form-elements/button';
-import Header from '../components/form-components/Header';
-import ProductDetail from '../components/product-detail';
+import { NextPage } from "next";
+import React from "react";
+import { useState } from "react";
+import Head from "next/head";
+import Input from "../components/form-elements/input";
+import Button from "../components/form-elements/button";
+import Header from "../components/form-components/Header";
+import ProductDetail from "../components/product-detail";
 
 const Updateproduct: NextPage = () => {
   const [data, setData] = useState({});
 
   const handleData = (e: any) => {
-    setData({ ...data, [e.target.name]: e.target.value })
-  }
+    setData({ ...data, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = () => {
     // Submission logics
-  }
+  };
 
   return (
     <>
@@ -51,10 +51,7 @@ const Updateproduct: NextPage = () => {
                           placeholder="Location"
                           onChange={handleData}
                         />
-                        <Button
-                          label="Update Product"
-                          onClick={handleSubmit}
-                        />
+                        <Button label="Update Product" onClick={handleSubmit} />
                       </form>
                     </div>
                   </div>
@@ -66,11 +63,20 @@ const Updateproduct: NextPage = () => {
                 <div className="relative w-full h-full md:h-auto">
                   <div className="relative bg-white/30 bg-opacity-60 rounded-lg shadow dark:bg-gray-700 dark:bg-opacity-40">
                     <div className="px-6 py-6 lg:px-8">
-                    <p className="text-xl font-medium title-font mb-4 text-[#a13bf7] dark:text-[#00bdff]">Product Details</p>
-                    <div className="p-2 flex flex-col">
-                      <ProductDetail label="Product Id" value="sdfh2516q5dvvvvvqxv3x35" />
-                      <ProductDetail label='' value="/records.png" type="image" />
-                    </div>
+                      <p className="text-xl font-medium title-font mb-4 text-[#a13bf7] dark:text-[#00bdff]">
+                        Product Details
+                      </p>
+                      <div className="p-2 flex flex-col">
+                        <ProductDetail
+                          label="Product Id"
+                          value="sdfh2516q5dvvvvvqxv3x35"
+                        />
+                        <ProductDetail
+                          label=""
+                          value="/records.png"
+                          type="image"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -80,7 +86,7 @@ const Updateproduct: NextPage = () => {
         </div>
       </main>
     </>
-  )
-}
+  );
+};
 
-export default Updateproduct
+export default Updateproduct;

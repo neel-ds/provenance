@@ -1,25 +1,25 @@
-import React from 'react';
-import { useState } from 'react';
-import { NextPage } from 'next';
-import Head from 'next/head';
-import Input from '../components/form-elements/input';
-import Header from '../components/form-components/Header';
-import Timeline from '../components/timeline';
-import ProductDetail from '../components/product-detail';
+import React from "react";
+import { useState } from "react";
+import { NextPage } from "next";
+import Head from "next/head";
+import Input from "../components/form-elements/input";
+import Header from "../components/form-components/Header";
+import Timeline from "../components/timeline";
+import ProductDetail from "../components/product-detail";
 
 const Producthistory: NextPage = () => {
   const [data, setData] = useState({});
 
   const handleData = (e: any) => {
-    setData({ ...data, [e.target.name]: e.target.value })
-  }
+    setData({ ...data, [e.target.name]: e.target.value });
+  };
 
   /* Temp Product History Timeline */
   const productHistory = [
-    { title: 'Sample Title1', subtitle:"2023", des:"This is a des" },
-    { title: 'Sample Title2', subtitle:"2023", des:"This is a des" },
-    { title: 'Sample Title3', subtitle:"2023", des:"This is a des" }
-  ]
+    { title: "Sample Title1", subtitle: "2023", des: "This is a des" },
+    { title: "Sample Title2", subtitle: "2023", des: "This is a des" },
+    { title: "Sample Title3", subtitle: "2023", des: "This is a des" },
+  ];
 
   return (
     <>
@@ -50,9 +50,18 @@ const Producthistory: NextPage = () => {
                           />
                         </form>
                         <div>
-                          <p className="text-xl font-medium title-font mb-4 text-[#a13bf7] dark:text-[#00bdff]">Product Details</p>
-                          <ProductDetail label="Product Id" value="sdfh2516q5dvvvvvqxv3x35" />
-                          <ProductDetail label="Product Image" value="/records.png" type="image" />
+                          <p className="text-xl font-medium title-font mb-4 text-[#a13bf7] dark:text-[#00bdff]">
+                            Product Details
+                          </p>
+                          <ProductDetail
+                            label="Product Id"
+                            value="sdfh2516q5dvvvvvqxv3x35"
+                          />
+                          <ProductDetail
+                            label="Product Image"
+                            value="/records.png"
+                            type="image"
+                          />
                         </div>
                       </div>
                       <div className="w-full md:w-1/2 space-y-6">
@@ -67,7 +76,7 @@ const Producthistory: NextPage = () => {
         </div>
       </main>
     </>
-  )
-}
+  );
+};
 
-export default Producthistory
+export default Producthistory;

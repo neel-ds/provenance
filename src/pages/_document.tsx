@@ -1,18 +1,18 @@
-import React from 'react'
-import Document, { Html, Head, Main, NextScript } from 'next/document'
+import React from "react";
+import Document, { Html, Head, Main, NextScript } from "next/document";
 
 class MyDocument extends Document {
   render() {
     return (
       <Html>
         <Head />
-        <body className="bg-[url('../assets/provenance.jpeg')] bg-no-repeat bg-cover bg-center bg-fixed dark:bg-[url('../assets/darkp.jpeg')]">
+        <body className="bg-[url('../assets/provenance.jpeg')] bg-no-repeat bg-cover bg-center bg-fixed dark:bg-[url('../assets/dark.jpeg')]">
           <Main />
           <NextScript />
         </body>
       </Html>
-    )
+    );
   }
 }
 
-export default MyDocument
+export default MyDocument;
