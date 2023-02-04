@@ -113,7 +113,7 @@ const Header = () => {
                   <PopoverContent className="bg-blue-100 bg-opacity-80 box-border h-25 w-35 dark:bg-black/40 dark:bg-opacity-80 dark:text-white/80 shadow-lg rounded-xl border-1 p-4 min-w-sm">
                     <Link
                       target={"_blank"}
-                      href="https://platform-test.polygonid.com/claim-link/80f0f2b1-ffaf-4fc3-a105-9458a446faf1"
+                      href="https://platform-test.polygonid.com/claim-link/fc5a1191-29e2-4dcb-b076-01394899942a"
                       className="group display-block p-2 rounded-md hover:bg-blue-200 hover:text-[#008dff]"
                     >
                       <Stack direction={"row"} align={"center"}>
@@ -129,7 +129,7 @@ const Header = () => {
                     </Link>
                     <Link
                       target={"_blank"}
-                      href="https://platform-test.polygonid.com/claim-link/d56bd618-5c37-44aa-9b63-3594f145dd26"
+                      href="https://platform-test.polygonid.com/claim-link/29722737-9dee-4323-83b4-f1acd8bd8157"
                       className="group display-block p-2 rounded-md hover:bg-blue-200 hover:text-[#008dff]"
                     >
                       <Stack direction={"row"} align={"center"}>

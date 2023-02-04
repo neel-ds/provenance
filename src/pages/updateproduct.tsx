@@ -6,9 +6,23 @@ import Input from "../components/form-elements/input";
 import Button from "../components/form-elements/button";
 import Header from "../components/form-components/Header";
 import ProductDetail from "../components/product-detail";
-
+import { useDisclosure, useToast } from "@chakra-ui/react";
+import { QRCode } from "react-qr-svg";
+import distributorQR from "../Contracts/Distributor/distributor.json";
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  Box,
+  Text,
+} from "@chakra-ui/react";
 const Updateproduct: NextPage = () => {
   const [data, setData] = useState({});
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const handleData = (e: any) => {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -51,7 +65,34 @@ const Updateproduct: NextPage = () => {
                           placeholder="Location"
                           onChange={handleData}
                         />
-                        <Button label="Update Product" onClick={handleSubmit} />
+ <Button label="Update Product" onClick={onOpen} />
+                        <Modal onClose={onClose} isOpen={isOpen} isCentered>
+                          <ModalOverlay />
+                          <ModalContent>
+                            <ModalHeader>
+                              {" "}
+                              Verify your Distributor Role{" "}
+                            </ModalHeader>
+                            <ModalCloseButton />
+                            <ModalBody>
+                              <Text className="font-semibold text-sm text-gray-500 text-center pb-5 -pt-5">
+                                Please verify with the same wallet address that
+                                is connected to this site.
+                              </Text>
+                              <Box className="flex flex-col items-center justify-center">
+                                <QRCode
+                                  level="Q"
+                                  style={{ width: 350 }}
+                                  value={JSON.stringify(distributorQR)}
+                                />
+                              </Box>
+                            </ModalBody>
+                            <ModalFooter>
+                              <Button label="Close" onClick={onClose} />
+                            </ModalFooter>
+                          </ModalContent>
+                        </Modal>
+                      
                       </form>
                     </div>
                   </div>

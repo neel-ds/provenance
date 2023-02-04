@@ -2,11 +2,25 @@ import { NextPage } from "next";
 import { useState } from "react";
 import React from "react";
 import Head from "next/head";
-import Image from "next/image";
 import Input from "../components/form-elements/input";
 import Button from "../components/form-elements/button";
 import FileUpload from "../components/form-elements/file-upload";
 import Header from "../components/form-components/Header";
+import manufacturerQR from "../Contracts/Manufcaturer/manufacturer.json";
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  Image,
+  Text,
+  ModalCloseButton,
+  Box,
+} from "@chakra-ui/react";
+import { useDisclosure } from "@chakra-ui/react";
+import { QRCode } from "react-qr-svg";
 
 const Addproduct: NextPage = () => {
   const [data, setData] = useState({});
@@ -25,6 +39,9 @@ const Addproduct: NextPage = () => {
   const handleSubmit = () => {
     // Submission logics
   };
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
 
   return (
     <>
@@ -93,7 +110,33 @@ const Addproduct: NextPage = () => {
                         </div>
                       </div>
                       <div className="max-w-[200px] flex m-auto">
-                        <Button label="Add Product" onClick={handleSubmit} />
+                      <Button label="Add Product" onClick={onOpen} />
+                        <Modal onClose={onClose} isOpen={isOpen} isCentered>
+                          <ModalOverlay />
+                          <ModalContent>
+                            <ModalHeader>
+                              {" "}
+                              Verify your Manufacturer Role
+                            </ModalHeader>
+                            <ModalCloseButton />
+                            <ModalBody>
+                              <Text className="font-semibold text-sm text-gray-500 text-center pb-5 -pt-5">
+                                Please verify with the same wallet address that
+                                is connected to this site.
+                              </Text>
+                              <Box className="flex flex-col items-center justify-center">
+                                <QRCode
+                                  level="Q"
+                                  style={{ width: 350 }}
+                                  value={JSON.stringify(manufacturerQR)}
+                                />
+                              </Box>
+                            </ModalBody>
+                            <ModalFooter>
+                              <Button label="Close" onClick={onClose} />
+                            </ModalFooter>
+                          </ModalContent>
+                        </Modal>
                       </div>
                     </form>
                   </div>
