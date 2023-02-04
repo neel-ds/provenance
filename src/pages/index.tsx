@@ -44,19 +44,19 @@ const Home: NextPage = () => {
           <div className="flex flex-col justify-center">
             <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white sm:text-5xl md:text-6xl">
               <span className="block xl:inline text-gray-800 dark:text-white">Welcome to</span>
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#8b00ff] to-[#a75eff] dark:from-[#8c2bff] dark:to-[#d97dff] pb-4">
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#732fff] to-[#a75eff] dark:from-[#8c2bff] dark:to-[#d97dff] pb-4">
                 Provenance
               </span>
-              <span className="block font-semibold text-purple-500 dark:text-[#e99aff] font-medium text-2xl">
+              <span className="block font-semibold text-[#732fff] dark:text-[#e99aff] font-medium text-2xl">
                 Decentralized Application
               </span>
             </h1>
-            <p className="mt-3 text-base text-gray-700 dark:text-gray-300 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
+            <p className="mt-3 text-base text-gray-600 dark:text-gray-300 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
               Verify the authenticity of products by unique product ID.
             </p>
             <div className="mt-5 sm:mt-8 sm:flex lg:justify-start md:flex-col lg:flex-row">
               <div>
-                <Link href="/products" className="w-full md:w-[70%] lg:w-full flex items-center justify-center px-8 py-3 border-0 border-transparent text-base font-medium rounded-3xl text-white bg-gradient-to-r from-[#a13bf7] to-[#7500ff] drop-shadow-[0_1px_3px_#7d7d7d] hover:drop-shadow-[0_3px_5px_#7d7d7d] dark:hover:drop-shadow-[0_3px_5px_#8ce1ff] md:py-2 md:text-lg md:px-8"
+                <Link href="/products" className="w-full md:w-[70%] lg:w-full flex items-center justify-center px-8 py-3 border-0 border-transparent text-base font-medium rounded-3xl text-white bg-gradient-to-r from-[#732fff] to-[#a13bf7] drop-shadow-[0_1px_3px_#7d7d7d] hover:drop-shadow-[0_3px_5px_#7d7d7d] dark:hover:drop-shadow-[0_1px_3px_#a13bf7] md:py-2 md:text-lg md:px-8"
                   >Explore</Link>
               </div>
             </div>
