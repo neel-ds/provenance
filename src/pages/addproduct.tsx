@@ -1,16 +1,22 @@
-import { NextPage } from "next";
-import { useState } from "react";
-import React from "react";
-import Head from "next/head";
-import Image from "next/image";
-import Input from "../components/form-elements/input";
-import Button from "../components/form-elements/button";
-import FileUpload from "../components/form-elements/file-upload";
-import Header from "../components/form-components/Header";
+import { NextPage } from 'next';
+import { useEffect, useState } from 'react';
+import React from 'react';
+import Head from 'next/head';
+import Image from 'next/image';
+import Input from '../components/form-elements/input';
+import Button from '../components/form-elements/button';
+import FileUpload from '../components/form-elements/file-upload';
+import Header from '../components/form-components/Header';
+import ABI from '../utils/ABI.json';
+import {ethers} from 'ethers';
+import { contractAddress } from '@/utils/contract';
+import {Web3Storage} from 'web3.storage';
 
 const Addproduct: NextPage = () => {
-  const [data, setData] = useState({});
-  const [imageUrl, setImageUrl] = useState("");
+  
+  const [data, setData] = useState({})
+  const [imageUrl, setImageUrl] = useState('')
+  const [image, setImage] = useState('')
 
   const handleData = (e: any) => {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -22,9 +28,47 @@ const Addproduct: NextPage = () => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = () => {
-    // Submission logics
-  };
+  const [isConnected, setIsConnected] = useState(false);
+  const [hasMetamask, setHasMetamask] = useState(false);
+  const [signer, setSigner] = useState(undefined);
+
+  async function connect() {
+    if (typeof window.ethereum !== "undefined") {
+      try {
+        await ethereum.request({ method: "eth_requestAccounts" });
+        setIsConnected(true);
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        setSigner(provider.getSigner());
+      } catch (e) {
+        console.log(e);
+      }
+    } else {
+      setIsConnected(false);
+    }
+  }
+
+  useEffect(() => {
+    connect();
+    if (typeof window.ethereum !== "undefined") {
+      setHasMetamask(true);
+    }
+  }, []);
+
+  const callContract = async () => {
+    const contract = new ethers.Contract(contractAddress, ABI, signer);
+    try {
+      await contract.addProduct(
+        Number((data as any).productid),
+        (data as any).productname,
+        (data as any).description,
+        (data as any).Location,
+        imageUrl,
+        (data as any).locationURL,
+      )
+    } catch(e) {
+      console.log(e)
+    }
+  }
 
   return (
     <>
@@ -81,7 +125,24 @@ const Addproduct: NextPage = () => {
                               id="productimage"
                               name="productimage"
                               label="Product Image"
-                              onChange={handleImage}
+                              onChange={(e: any) => {
+                                const image = URL.createObjectURL(
+                                  e.target.files[0]
+                                );
+                                setImage(image);
+                                const files = (e.target as HTMLInputElement)
+                                  .files!;
+                                const client = new Web3Storage({
+                                  token:
+                                    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDkxZTRjOEMwNTJiMzkzNEQ3Nzc5NWM3QWQ3MkQ0MTFhMGQyMWUxODIiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NzE2ODYwNTU1NjIsIm5hbWUiOiJNYXRpYy1Qcm9maWxlIn0.zDWjIoqZUCnPXtvWXjm_ZbvPN2ZZHTfcK7JHdM2S7hk",
+                                });
+                                client.put(files).then((cid) => {
+                                  console.log(cid);
+                                  setImageUrl(
+                                    `https://${cid}.ipfs.w3s.link/${files[0].name}`
+                                  );
+                                });
+                              }}
                             />
                             <Image
                               src={imageUrl !== "" ? imageUrl : "/preview.png"}
@@ -92,8 +153,11 @@ const Addproduct: NextPage = () => {
                           </div>
                         </div>
                       </div>
-                      <div className="max-w-[200px] flex m-auto">
-                        <Button label="Add Product" onClick={handleSubmit} />
+                      <div className="max-w-[200px]">                        
+                        <Button
+                          label="Add Product"
+                          onClick={() => { callContract() }}
+                        />
                       </div>
                     </form>
                   </div>
